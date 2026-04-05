@@ -1,6 +1,7 @@
 import { test } from '@playwright/test';
 import { Login } from './pages/FeatureLogin.page';
 import { Usuarios } from './pages/FeatureUsuarios.page';
+import userData from '../data/users.json';
 
 test.describe('Usuários', () => {
   test.beforeEach(async ({ page }) => {
@@ -17,6 +18,14 @@ test.describe('Usuários', () => {
     await usuarios.validarCadastroUsuarioPadrao();
   });
 
+  test('Realizar logout com usuário padrão', async ({ page }) => {
+    const usuarios = new Usuarios(page);
+    const login = new Login(page);
+    await login.login(userData.usuarioPadrao.email, userData.usuarioPadrao.senha);
+    await usuarios.realizarLogout();
+    await usuarios.validarLogout();
+  });
+
   test('Cadastrar usuário administrador', async ({ page }) => {
     const usuarios = new Usuarios(page);
     const usuario = await usuarios.generateRandomUser();
@@ -28,4 +37,21 @@ test.describe('Usuários', () => {
     );
     await usuarios.validarCadastroUsuarioAdministrador();
   });
+
+  test('Listar usuários', async ({ page }) => {
+    const usuarios = new Usuarios(page);
+    const login = new Login(page);
+    await login.login(userData.usuarioAdmin.email, userData.usuarioAdmin.senha);
+    await usuarios.irParaListaUsuarios();
+    await usuarios.validarListaUsuarios();
+  });
+
+  test('Realizar logout com usuário administrador', async ({ page }) => {
+    const usuarios = new Usuarios(page);
+    const login = new Login(page);
+    await login.login(userData.usuarioAdmin.email, userData.usuarioAdmin.senha);
+    await usuarios.realizarLogout();
+    await usuarios.validarLogout();
+  });
+
 });

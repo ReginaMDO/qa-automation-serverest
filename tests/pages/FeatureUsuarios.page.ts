@@ -9,6 +9,9 @@ export class Usuarios {
   private readonly checkboxAdmin: Locator;
   private readonly buttonCadastrar: Locator;
   private readonly mensagem: Locator;
+  private readonly menuListarUsuarios: Locator;
+  private readonly title: Locator;
+  private readonly buttonLogout: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -18,6 +21,9 @@ export class Usuarios {
     this.inputSenha = page.locator('#password');
     this.checkboxAdmin = page.locator('#administrador');
     this.mensagem = page.getByText('Cadastro realizado com sucesso');
+    this.menuListarUsuarios = page.getByTestId('listarUsuarios');
+    this.title = page.getByRole('heading', { name: 'Lista dos Usuários' });
+    this.buttonLogout = page.getByTestId('logout');
   }
 
   async preencherFormulario(nome: string, email: string, senha: string) {
@@ -54,4 +60,22 @@ export class Usuarios {
     await expect(this.mensagem).toBeVisible();
     await expect(this.page).toHaveURL(EnvConfig.urlAdminHome);
   }
+
+  async irParaListaUsuarios() {
+    await this.menuListarUsuarios.click();
+  }
+
+  async validarListaUsuarios() {
+    await expect(this.title).toBeVisible();
+    await expect(this.page).toHaveURL(EnvConfig.urlAdminListarUsuarios);
+  }
+
+  async realizarLogout() {
+    await this.buttonLogout.click();
+  }
+  
+  async validarLogout() {
+    await expect(this.page).toHaveURL(EnvConfig.urlLogin);
+  }
+
 }
