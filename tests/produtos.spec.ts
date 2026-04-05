@@ -15,8 +15,8 @@ test.describe('Produtos', () => {
     await login.login(userData.usuarioPadrao.email, userData.usuarioPadrao.senha);
     await login.validarLoginComUsuarioPadrao();
     const produtos = new Produtos(page);
-    await produtos.pesquisarProduto(produtoData.produtos.SoftMetalSoap);
-    await produtos.validarProdutoPesquisado(produtoData.produtos.SoftMetalSoap);
+    await produtos.pesquisarProduto(produtoData.produtos.Samsung60polegadas);
+    await produtos.validarProdutoPesquisado(produtoData.produtos.Samsung60polegadas);
   });
 
   test('Cadastrar produto', async ({ page }) => {
