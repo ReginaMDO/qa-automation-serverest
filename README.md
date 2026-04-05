@@ -137,18 +137,6 @@ npx playwright show-report
 - [ ] Revisar flakiness dos testes periodicamente
 - [ ] Documentar novos cenários adicionados
 
-## 🐛 Troubleshooting
-
-### Erro: "TimeoutError: Timeout 5000ms exceeded"
-- Aumentar timeout em `playwright.config.ts`
-- Verificar se o ambiente está acessível
-- Revisar seletores dos elementos
-
-### Erro: "element not found"
-- Verificar se o seletor está correto
-- Adicionar waits para elementos dinâmicos
-- Usar `page.waitForURL()` para esperar navegação
-
 ## 👨‍💻 Autor
 
-Desenvolvido por 
+Desenvolvido por @ReginaMDO
