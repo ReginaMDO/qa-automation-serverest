@@ -139,4 +139,4 @@ npx playwright show-report
 
 ## 👨‍💻 Autor
 
-Desenvolvido por @ReginaMDO
+Desenvolvido por [@ReginaMDO](https://github.com/ReginaMDO)
