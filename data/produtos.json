@@ -1,0 +1,13 @@
+{
+  "produtos": {
+    "SoftMetalSoap": "Soft Metal Soap",
+    "LogitechMXVertical": "Logitech MX Vertical"
+  },
+  "novoProduto": {
+    "nome": "Livro",
+    "preco": 100,
+    "descricao": "Livro de automação de testes",
+    "quantidade": 10,
+    "img": "images/image.png"
+  }
+}

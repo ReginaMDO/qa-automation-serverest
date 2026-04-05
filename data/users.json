@@ -1,0 +1,10 @@
+{
+  "usuarioPadrao": {
+    "email": "joao.dapaz@example.com",
+    "senha": "2222222"
+  },
+  "usuarioAdmin": {
+    "email": "tereza.caldeira@example.com",
+    "senha": "satchmo"
+  }
+}
