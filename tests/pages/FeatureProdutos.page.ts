@@ -1,9 +1,11 @@
 import { expect, type Locator, type Page } from '@playwright/test';
 import { resolve } from 'path';
+import { EnvConfig } from '../../config/EnvConfig';
 
 export class Produtos {
   private readonly page: Page;
   private readonly inputPesquisar: Locator;
+  private readonly menuCadastrarProduto: Locator;
   private readonly inputNome: Locator;
   private readonly inputPreco: Locator;
   private readonly inputDescricao: Locator;
@@ -11,10 +13,13 @@ export class Produtos {
   private readonly inputImg: Locator;
   private readonly buttonCadastrar: Locator;
   private readonly descricao: Locator;
+  private readonly menuListarProdutos: Locator;
+  private readonly title: Locator;
 
   constructor(page: Page) {
     this.page = page;
     this.inputPesquisar = page.locator('[data-testid="pesquisar"]');
+    this.menuCadastrarProduto = page.getByTestId('cadastrarProdutos');
     this.inputNome = page.locator('#nome');
     this.inputPreco = page.locator('#price');
     this.inputDescricao = page.locator('#description');
@@ -22,6 +27,8 @@ export class Produtos {
     this.inputImg = page.locator('#imagem');
     this.buttonCadastrar = page.locator('button[type="submit"], [data-testid="cadastrar"]');
     this.descricao = page.getByText('Livro de automação de testes');
+    this.menuListarProdutos = page.getByTestId('listarProdutos');
+    this.title = page.getByRole('heading', { name: 'Lista dos Produtos' });
   }
 
   async pesquisarProduto(nomeProduto: string) {
@@ -34,7 +41,7 @@ export class Produtos {
   }
 
   async irParaCadastroProduto() {
-    await this.page.getByTestId('cadastrarProdutos').click();
+    await this.menuCadastrarProduto.click();
   }
 
   async preencherFormularioProduto(
@@ -59,4 +66,14 @@ export class Produtos {
   async validarCadastroProduto() {
     await expect(this.descricao).toBeVisible();
   }
+
+  async irParaListaProdutos() {
+    await this.menuListarProdutos.click();
+  }
+
+  async validarListaProdutos() {
+    await expect(this.title).toBeVisible();
+    await expect(this.page).toHaveURL(EnvConfig.urlAdminListarProdutos);
+  }
+
 }

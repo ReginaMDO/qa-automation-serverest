@@ -35,4 +35,14 @@ test.describe('Produtos', () => {
     await produtos.cadastrarProduto();
     await produtos.validarCadastroProduto();
   });
+
+  test('Listar produtos', async ({ page }) => {
+    const login = new Login(page);
+    await login.login(userData.usuarioAdmin.email, userData.usuarioAdmin.senha);
+    await login.validarLoginComAdministrador();
+    const produtos = new Produtos(page);
+    await produtos.irParaListaProdutos();
+    await produtos.validarListaProdutos();
+  });
+
 });
