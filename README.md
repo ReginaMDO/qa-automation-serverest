@@ -25,7 +25,7 @@ Este projeto implementa testes automatizados para validar a funcionalidade compl
 
 1. **Clone o repositório**
    ```bash
-   git clone https://github.com/seu-usuario/qa-automation-serverest.git
+   git clone git@github.com:ReginaMDO/qa-automation-serverest.git
    cd qa-automation-serverest
    ```
 
